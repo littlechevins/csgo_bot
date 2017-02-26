@@ -5,3 +5,7 @@ Capture csgo sharecodes and send them to csgostats.gg
 	-steam
 	-steam-csgo
 	-steam-chat-bot
+
+###Ignore:
+	-example.js
+	-recentGamesLogArray
