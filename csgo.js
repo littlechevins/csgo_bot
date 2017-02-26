@@ -35,8 +35,8 @@ var Steam = require("steam"),
 *								*
 ********************************/
 
-var scDecoder = new csgo.SharecodeDecoder("CSGO-U6MWi-hYFWJ-opPwD-JciHm-qOijD");
-console.log("Sharecode CSGO-U6MWi-hYFWJ-opPwD-JciHm-qOijD decodes into: ");
+var scDecoder = new csgo.SharecodeDecoder("CSGO-yuLZQ-UCGjA-DMqfS-wOKfj-Sjp7C");
+console.log("Sharecode CSGO-yuLZQ-UCGjA-DMqfS-wOKfj-Sjp7C decodes into: ");
 console.log(scDecoder.decode());
 
 // Hash encryption
@@ -45,6 +45,8 @@ function MakeSha(bytes) {
     hash.update(bytes);
     return hash.digest();
 }
+
+
 
 
 /********************************
@@ -90,7 +92,7 @@ var onSteamLogOn = function onSteamLogOn(response){
 				fs.writeFileSync('recentGamesLog.txt', JSON.stringify(list, null, 2));
 				fs.writeFileSync('recentGamesLogArray.txt', list.matches[0]);
 				console.log(JSON.stringify(list, null, 2));
-
+				process.exit();
 			}
 		});
 	});
