@@ -29,65 +29,48 @@ def combine_high_low_bytes(low, high):
 
 def regex_tvPort():
 	regex = r"(\"tv_port\"\: (\d*)\,)"
-	# print("*******tv_port's*******")
 	tv_port_array = []
 	regex = r"(\"tv_port\"\: (\d*)\,)"
 	# iterator instead of findall
 	for m in re.finditer(regex, my_string):
 		tv_port_array.append(lower_bits(int(m.group(2))))
-	# 	print(m.group(2))
 	return tv_port_array
 
 # Capture reservation id
 
 def regex_reservationID():
-	# print("*******reservation_id's*******")
 	reservation_id_array = []
-	#\"low\"\: \-*(\d*),
-	# regex = r"(\"reservationid\"\: \{.*(\d+),)"
 	regex = r"(\"reservationid\": \{(.*?)\}\,)"
 	# iterator instead of findall
 	for d in re.finditer(regex, my_string, re.DOTALL):
-		# print(d.group(1))
-		# print(d.group(2))
+
 		text = d.group(2)
 		regex_low = r"(\"low\": (.*?)\,)"
 		regex_high = r"(\"high\": (.*?)\,)"
 		l = re.search(regex_low, text)
-		# print("low:  " + l.group(2))
 		h = re.search(regex_high, text)
-		# print("high: " + h.group(2))
 		output = combine_high_low_bytes(int(l.group(2)), int(h.group(2)))
 		reservation_id_array.append(output)
-		# print(output)
-		# print("****************NEXT************")
-		# print(reservation_id_array)
+
 	return reservation_id_array
 
 # Capture match id
 
 def regex_matchID():
 	match_id_array = []
-	# print("*******match_id's*******")
-	#\"low\"\: \-*(\d*),
-	# regex = r"(\"reservationid\"\: \{.*(\d+),)"
+
 	regex = r"(\"matchid\": \{(.*?)\}\,)"
 	# iterator instead of findall
 	for f in re.finditer(regex, my_string, re.DOTALL):
-		# match_id.append(f.group(2))
-		# print(f.group(2))
+
 		text = f.group(2)
 		regex_low = r"(\"low\": (.*?)\,)"
 		regex_high = r"(\"high\": (.*?)\,)"
 		l = re.search(regex_low, text)
-		# print("low:  " + l.group(2))
 		h = re.search(regex_high, text)
-		# print("high: " + h.group(2))
 		output = combine_high_low_bytes(int(l.group(2)), int(h.group(2)))
 		match_id_array.append(output)
-		# print(output)
-		# print("****************NEXT************")
-		# print(match_id_array)
+
 	return match_id_array
 
 # Encodes into CSGO-XXXXX-XXXXX-XXXXX-XXXXX using given inputs
