@@ -90,8 +90,9 @@ var onSteamLogOn = function onSteamLogOn(response){
 			if(list.matches && list.matches.length > 0){
 				// console.log(list.matches[0])
 				fs.writeFileSync('recentGamesLog.txt', JSON.stringify(list, null, 2));
-				fs.writeFileSync('recentGamesLogArray.txt', list.matches[0]);
-				console.log(JSON.stringify(list, null, 2));
+				// No longer printing output..too long
+				// fs.writeFileSync('recentGamesLogArray.txt', list.matches[0]);
+				// console.log(JSON.stringify(list, null, 2));
 				process.exit();
 			}
 		});
